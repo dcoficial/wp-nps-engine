@@ -19,6 +19,29 @@ class NPS_Trigger_Settings {
         global $wpdb;
         $table_name_rules = $wpdb->prefix . 'nps_rules';
 
+        // Salva a hora de execução do Cron e reagenda o evento
+        if ( isset( $_POST['nps_cron_run_time'] ) && preg_match( '/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/', $_POST['nps_cron_run_time'] ) ) {
+            $cron_time = sanitize_text_field( $_POST['nps_cron_run_time'] );
+            update_option( 'nps_cron_run_time', $cron_time );
+
+            // Limpa o agendamento antigo para garantir que não haja duplicatas
+            wp_clear_scheduled_hook( 'nps_survey_dispatch_cron' );
+            
+            // Calcula o timestamp para a próxima execução no fuso horário do site
+            // A função strtotime usa o timezone do WordPress, configurado em 'Settings > General'
+            $next_run = strtotime( 'today ' . $cron_time );
+            if ( $next_run < time() ) {
+                $next_run = strtotime( 'tomorrow ' . $cron_time );
+            }
+
+            // Reagenda o evento. wp_schedule_event espera um timestamp UTC, mas lida com a conversão a partir do timezone do site.
+            wp_schedule_event( $next_run, 'daily', 'nps_survey_dispatch_cron' );
+
+        } else {
+            NPS_Helper_Functions::redirect_with_message( 'nps-survey-trigger-settings', __( 'Erro: O formato da hora de execução do cron é inválido. Use HH:MM.', 'nps-engine' ), 'error' );
+            return;
+        }
+
         // Salva a Política de Quarentena
         $global_min_frequency = intval( $_POST['nps_global_min_frequency'] );
         if ( $global_min_frequency < 1 ) {

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: NPS Engine 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-17 10:00-0300\n"
-"PO-Revision-Date: 2025-07-17 22:57-0300\n"
+"PO-Revision-Date: 2025-07-18 11:28-0300\n"
 "Last-Translator: Gemini\n"
 "Language-Team: English\n"
 "Language: en_US\n"
@@ -150,6 +150,18 @@ msgstr "Defines the minimum period a contact must wait before they can receive a
 
 msgid "Intervalo mínimo entre pesquisas (dias):"
 msgstr "Minimum interval between surveys (days):"
+
+msgid "Horário do Cron"
+msgstr "Cron Schedule"
+
+msgid "Defina a hora exata em que o envio diário das pesquisas será executado."
+msgstr "Define the exact time the daily survey dispatch will run."
+
+msgid "Hora de execução:"
+msgstr "Execution time:"
+
+msgid "O formato é HH:MM. O fuso horário utilizado é o configurado no seu WordPress."
+msgstr "The format is HH:MM. The timezone used is the one configured in your WordPress settings."
 
 msgid "Configuração do Gatilho"
 msgstr "Trigger Configuration"
@@ -324,6 +336,9 @@ msgstr "Error sending test email. Check your settings and server logs."
 
 msgid "Sua opinião é importante para nós!"
 msgstr "Your opinion is important to us!"
+
+msgid "Erro: O formato da hora de execução do cron é inválido. Use HH:MM."
+msgstr "Error: The cron execution time format is invalid. Use HH:MM."
 
 msgid "Erro: O intervalo da política de quarentena deve ser um número positivo."
 msgstr "Error: The quarantine policy interval must be a positive number."

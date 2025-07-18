@@ -103,7 +103,17 @@ class NPS_Engine {
         $db_manager = new NPS_Database_Manager();
         $db_manager->create_nps_tables();
         if ( ! wp_next_scheduled( 'nps_survey_dispatch_cron' ) ) {
-            wp_schedule_event( time(), 'daily', 'nps_survey_dispatch_cron' );
+            // Pega a hora salva, ou usa o padrão '09:00'
+            $cron_time = get_option( 'nps_cron_run_time', '09:00' );
+            
+            // Calcula o próximo timestamp no fuso horário do site
+            $next_run = strtotime( 'today ' . $cron_time );
+            if ( $next_run < time() ) {
+                $next_run = strtotime( 'tomorrow ' . $cron_time );
+            }
+            
+            // Agenda o evento diário
+            wp_schedule_event( $next_run, 'daily', 'nps_survey_dispatch_cron' );
         }
         flush_rewrite_rules();
         update_option( 'nps_rewrite_rules_flushed', 'yes' );

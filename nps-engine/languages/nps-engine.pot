@@ -214,52 +214,67 @@ msgid "Intervalo mínimo entre pesquisas (dias):"
 msgstr ""
 
 #: admin/class-nps-admin-pages.php:294
-msgid "Configuração do Gatilho"
+msgid "Horário do Cron"
 msgstr ""
 
 #: admin/class-nps-admin-pages.php:295
-msgid "Defina a condição que irá disparar o envio da pesquisa para os contatos elegíveis."
+msgid "Defina a hora exata em que o envio diário das pesquisas será executado."
 msgstr ""
 
-#: admin/class-nps-admin-pages.php:297
-msgid "Gatilho"
+#: admin/class-nps-admin-pages.php:298
+msgid "Hora de execução:"
 msgstr ""
 
-#: admin/class-nps-admin-pages.php:299
-msgid "Baseado em Tempo"
-msgstr ""
-
-#: admin/class-nps-admin-pages.php:300
-msgid "Baseado em Evento"
-msgstr ""
-
-#: admin/class-nps-admin-pages.php:304
-msgid "Enviar uma pesquisa a cada (dias):"
+#: admin/class-nps-admin-pages.php:301
+msgid "O formato é HH:MM. O fuso horário utilizado é o configurado no seu WordPress."
 msgstr ""
 
 #: admin/class-nps-admin-pages.php:305
-msgid "A pesquisa só será enviada se o contato também estiver fora da Política de Quarentena."
+msgid "Configuração do Gatilho"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:306
+msgid "Defina a condição que irá disparar o envio da pesquisa para os contatos elegíveis."
 msgstr ""
 
 #: admin/class-nps-admin-pages.php:308
-msgid "Quando o evento ocorrer:"
+msgid "Gatilho"
 msgstr ""
 
 #: admin/class-nps-admin-pages.php:310
-#: admin/class-nps-admin-pages.php:350
-#: includes/class-nps-trigger-settings.php:57
-msgid "Pedido WooCommerce Concluído"
+msgid "Baseado em Tempo"
 msgstr ""
 
 #: admin/class-nps-admin-pages.php:311
+msgid "Baseado em Evento"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:315
+msgid "Enviar uma pesquisa a cada (dias):"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:316
+msgid "A pesquisa só será enviada se o contato também estiver fora da Política de Quarentena."
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:319
+msgid "Quando o evento ocorrer:"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:321
+#: includes/class-nps-trigger-settings.php:83
+msgid "Pedido WooCommerce Concluído"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:322
 msgid "Requer integração com o plugin correspondente (ex: WooCommerce)."
 msgstr ""
 
-#: admin/class-nps-admin-pages.php:314
+#: admin/class-nps-admin-pages.php:325
 msgid "Aguardar (dias) antes de enviar a pesquisa:"
 msgstr ""
 
-#: admin/class-nps-admin-pages.php:318
+#: admin/class-nps-admin-pages.php:329
 msgid "Salvar Configurações de Gatilhos"
 msgstr ""
 
@@ -461,27 +476,31 @@ msgstr ""
 msgid "Sua opinião é importante para nós!"
 msgstr ""
 
-#: includes/class-nps-trigger-settings.php:26
+#: includes/class-nps-trigger-settings.php:39
+msgid "Erro: O formato da hora de execução do cron é inválido. Use HH:MM."
+msgstr ""
+
+#: includes/class-nps-trigger-settings.php:47
 msgid "Erro: O intervalo da política de quarentena deve ser um número positivo."
 msgstr ""
 
-#: includes/class-nps-trigger-settings.php:41
+#: includes/class-nps-trigger-settings.php:66
 msgid "Erro: O intervalo de dias para o gatilho de tempo deve ser positivo."
 msgstr ""
 
-#: includes/class-nps-trigger-settings.php:48
+#: includes/class-nps-trigger-settings.php:73
 msgid "Erro: O atraso em dias após o evento não pode ser negativo."
 msgstr ""
 
-#: includes/class-nps-trigger-settings.php:52
+#: includes/class-nps-trigger-settings.php:77
 msgid "Erro: Um evento deve ser selecionado."
 msgstr ""
 
-#: includes/class-nps-trigger-settings.php:67
+#: includes/class-nps-trigger-settings.php:92
 msgid "Erro ao salvar as configurações no banco de dados."
 msgstr ""
 
-#: includes/class-nps-trigger-settings.php:71
+#: includes/class-nps-trigger-settings.php:96
 msgid "Configurações de gatilhos salvas com sucesso!"
 msgstr ""
 

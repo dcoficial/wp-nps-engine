@@ -1,0 +1,368 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: NPS Engine 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-17 10:00-0300\n"
+"PO-Revision-Date: 2025-07-17 22:57-0300\n"
+"Last-Translator: Gemini\n"
+"Language-Team: English\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+"X-Domain: nps-engine\n"
+
+msgid "NPS Engine"
+msgstr "NPS Engine"
+
+msgid "Contatos"
+msgstr "Contacts"
+
+msgid "Layout"
+msgstr "Layout"
+
+msgid "Gatilhos"
+msgstr "Triggers"
+
+msgid "Relatórios"
+msgstr "Reports"
+
+msgid "Ferramentas"
+msgstr "Tools"
+
+msgid "Gerenciar Contatos NPS"
+msgstr "Manage NPS Contacts"
+
+msgid "Adicionar Novo Contato Manualmente"
+msgstr "Add New Contact Manually"
+
+msgid "Nome"
+msgstr "Name"
+
+msgid "E-mail"
+msgstr "Email"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Ativo"
+msgstr "Active"
+
+msgid "Inativo"
+msgstr "Inactive"
+
+msgid "Adicionar Contato"
+msgstr "Add Contact"
+
+msgid "Importar Usuários WordPress"
+msgstr "Import WordPress Users"
+
+msgid "Selecione os usuários do WordPress que você deseja adicionar como contatos NPS:"
+msgstr "Select the WordPress users you want to add as NPS contacts:"
+
+msgid "Todos os usuários do WordPress já foram importados ou não há usuários."
+msgstr "All WordPress users have already been imported or there are no users."
+
+msgid "Importar Selecionados"
+msgstr "Import Selected"
+
+msgid "Lista de Contatos"
+msgstr "Contacts List"
+
+msgid "Origem"
+msgstr "Origin"
+
+msgid "Última Pesquisa"
+msgstr "Last Survey"
+
+msgid "Ações"
+msgstr "Actions"
+
+msgid "Usuário WP"
+msgstr "WP User"
+
+msgid "Manual"
+msgstr "Manual"
+
+msgid "Nunca"
+msgstr "Never"
+
+msgid "Desativar"
+msgstr "Deactivate"
+
+msgid "Ativar"
+msgstr "Activate"
+
+msgid "Tem certeza que deseja excluir este contato e todas as suas respostas?"
+msgstr "Are you sure you want to delete this contact and all their responses?"
+
+msgid "Excluir"
+msgstr "Delete"
+
+msgid "Nenhum contato encontrado."
+msgstr "No contacts found."
+
+msgid "Configurações de Layout do Email"
+msgstr "Email Layout Settings"
+
+msgid "Conteúdo do E-mail"
+msgstr "Email Content"
+
+msgid "Nome do Remetente"
+msgstr "Sender Name"
+
+msgid "E-mail do Remetente"
+msgstr "Sender Email"
+
+msgid "E-mail de Resposta (Opcional)"
+msgstr "Reply-To Email (Optional)"
+
+msgid "Assunto do E-mail"
+msgstr "Email Subject"
+
+msgid "Corpo do E-mail"
+msgstr "Email Body"
+
+msgid "Use <code>[contact_name]</code>, <code>[site_name]</code>, e <code>[nps_score_links]</code>."
+msgstr "Use <code>[contact_name]</code>, <code>[site_name]</code>, and <code>[nps_score_links]</code>."
+
+msgid "Salvar Layout"
+msgstr "Save Layout"
+
+msgid "Testar Envio"
+msgstr "Test Send"
+
+msgid "Enviar E-mail de Teste Para:"
+msgstr "Send Test Email To:"
+
+msgid "Enviar Teste"
+msgstr "Send Test"
+
+msgid "Gatilhos da Pesquisa"
+msgstr "Survey Triggers"
+
+msgid "Política de Quarentena"
+msgstr "Quarantine Policy"
+
+msgid "Define o período mínimo que um contato deve esperar antes de poder receber uma nova pesquisa, independentemente do gatilho."
+msgstr "Defines the minimum period a contact must wait before they can receive a new survey, regardless of the trigger."
+
+msgid "Intervalo mínimo entre pesquisas (dias):"
+msgstr "Minimum interval between surveys (days):"
+
+msgid "Configuração do Gatilho"
+msgstr "Trigger Configuration"
+
+msgid "Defina a condição que irá disparar o envio da pesquisa para os contatos elegíveis."
+msgstr "Define the condition that will trigger sending the survey to eligible contacts."
+
+msgid "Gatilho"
+msgstr "Trigger"
+
+msgid "Baseado em Tempo"
+msgstr "Time-Based"
+
+msgid "Baseado em Evento"
+msgstr "Event-Based"
+
+msgid "Enviar uma pesquisa a cada (dias):"
+msgstr "Send a survey every (days):"
+
+msgid "A pesquisa só será enviada se o contato também estiver fora da Política de Quarentena."
+msgstr "The survey will only be sent if the contact is also outside the Quarantine Policy."
+
+msgid "Quando o evento ocorrer:"
+msgstr "When the event occurs:"
+
+msgid "Pedido WooCommerce Concluído"
+msgstr "WooCommerce Order Completed"
+
+msgid "Requer integração com o plugin correspondente (ex: WooCommerce)."
+msgstr "Requires integration with the corresponding plugin (e.g., WooCommerce)."
+
+msgid "Aguardar (dias) antes de enviar a pesquisa:"
+msgstr "Wait (days) before sending the survey:"
+
+msgid "Salvar Configurações de Gatilhos"
+msgstr "Save Trigger Settings"
+
+msgid "Relatórios NPS"
+msgstr "NPS Reports"
+
+msgid "De:"
+msgstr "From:"
+
+msgid "Até:"
+msgstr "To:"
+
+msgid "Filtrar"
+msgstr "Filter"
+
+msgid "Exportar para CSV"
+msgstr "Export to CSV"
+
+msgid "Visão Geral do NPS"
+msgstr "NPS Overview"
+
+msgid "Pontuação NPS:"
+msgstr "NPS Score:"
+
+msgid "Total de Respostas:"
+msgstr "Total Responses:"
+
+msgid "Promotores (9-10):"
+msgstr "Promoters (9-10):"
+
+msgid "Passivos (7-8):"
+msgstr "Passives (7-8):"
+
+msgid "Detratores (0-6):"
+msgstr "Detractors (0-6):"
+
+msgid "Nenhuma resposta encontrada para o período selecionado."
+msgstr "No responses found for the selected period."
+
+msgid "Respostas Detalhadas"
+msgstr "Detailed Responses"
+
+msgid "Contato (E-mail)"
+msgstr "Contact (Email)"
+
+msgid "Pontuação"
+msgstr "Score"
+
+msgid "Data da Resposta"
+msgstr "Response Date"
+
+msgid "Nenhuma resposta detalhada encontrada para o período selecionado."
+msgstr "No detailed responses found for the selected period."
+
+msgid "Resetar Dados do Plugin"
+msgstr "Reset Plugin Data"
+
+msgid "ATENÇÃO:"
+msgstr "WARNING:"
+
+msgid "Esta ação é irreversível. Ela irá apagar permanentemente TODOS os contatos e TODAS as respostas de pesquisa do banco de dados. Use com extremo cuidado."
+msgstr "This action is irreversible. It will permanently delete ALL contacts and ALL survey responses from the database. Use with extreme caution."
+
+msgid "Você tem CERTEZA ABSOLUTA que deseja apagar todos os contatos e respostas? Esta ação não pode ser desfeita."
+msgstr "Are you ABSOLUTELY SURE you want to delete all contacts and responses? This action cannot be undone."
+
+msgid "Apagar Todos os Contatos e Respostas"
+msgstr "Delete All Contacts and Responses"
+
+msgid "Erro: O endereço de e-mail fornecido é inválido."
+msgstr "Error: The provided email address is invalid."
+
+msgid "Erro: Este e-mail já existe na lista de contatos."
+msgstr "Error: This email already exists in the contact list."
+
+msgid "Contato adicionado com sucesso!"
+msgstr "Contact added successfully!"
+
+msgid "Erro ao tentar adicionar o novo contato no banco de dados."
+msgstr "Error trying to add the new contact to the database."
+
+msgid "Detalhes: %s"
+msgstr "Details: %s"
+
+msgid "Nenhum usuário do WordPress foi selecionado para importação."
+msgstr "No WordPress users were selected for import."
+
+msgid "%d novos usuários importados com sucesso."
+msgstr "%d new users imported successfully."
+
+msgid "%d usuários já existentes foram atualizados."
+msgstr "%d existing users were updated."
+
+msgid "%d usuários falharam na importação. Verifique os logs."
+msgstr "%d users failed to import. Check the logs."
+
+msgid "Nenhuma ação de importação foi concluída."
+msgstr "No import action was completed."
+
+msgid "Erro: Contato não encontrado."
+msgstr "Error: Contact not found."
+
+msgid "Status do contato alterado para ATIVO."
+msgstr "Contact status changed to ACTIVE."
+
+msgid "Status do contato alterado para INATIVO."
+msgstr "Contact status changed to INACTIVE."
+
+msgid "Erro ao tentar atualizar o status do contato."
+msgstr "Error trying to update the contact status."
+
+msgid "Contato e suas respostas foram excluídos com sucesso!"
+msgstr "Contact and their responses were successfully deleted!"
+
+msgid "Erro ao tentar excluir o contato do banco de dados."
+msgstr "Error trying to delete the contact from the database."
+
+msgid "Todos os contatos e respostas foram apagados com sucesso."
+msgstr "All contacts and responses were successfully deleted."
+
+msgid "Configurações de e-mail salvas com sucesso!"
+msgstr "Email settings saved successfully!"
+
+msgid "Erro: Endereço de e-mail de teste inválido."
+msgstr "Error: Invalid test email address."
+
+msgid "Teste de E-mail do Plugin NPS Engine"
+msgstr "NPS Engine Plugin Email Test"
+
+msgid "Este é um e-mail de teste enviado do seu Plugin NPS Engine no WordPress. Se você recebeu este e-mail, suas configurações de e-mail estão funcionando corretamente."
+msgstr "This is a test email sent from your NPS Engine Plugin on WordPress. If you received this email, your email settings are working correctly."
+
+msgid "E-mail de teste enviado com sucesso para %s!"
+msgstr "Test email successfully sent to %s!"
+
+msgid "Erro ao enviar e-mail de teste. Verifique suas configurações e logs do servidor."
+msgstr "Error sending test email. Check your settings and server logs."
+
+msgid "Sua opinião é importante para nós!"
+msgstr "Your opinion is important to us!"
+
+msgid "Erro: O intervalo da política de quarentena deve ser um número positivo."
+msgstr "Error: The quarantine policy interval must be a positive number."
+
+msgid "Erro: O intervalo de dias para o gatilho de tempo deve ser positivo."
+msgstr "Error: The day interval for the time-based trigger must be positive."
+
+msgid "Erro: O atraso em dias após o evento não pode ser negativo."
+msgstr "Error: The delay in days after the event cannot be negative."
+
+msgid "Erro: Um evento deve ser selecionado."
+msgstr "Error: An event must be selected."
+
+msgid "Erro ao salvar as configurações no banco de dados."
+msgstr "Error saving settings to the database."
+
+msgid "Configurações de gatilhos salvas com sucesso!"
+msgstr "Trigger settings saved successfully!"
+
+msgid "Link de pesquisa inválido ou expirado."
+msgstr "Invalid or expired survey link."
+
+msgid "Erro na Pesquisa"
+msgstr "Survey Error"
+
+msgid "Ocorreu um erro ao registrar sua resposta."
+msgstr "An error occurred while recording your response."
+
+msgid "Erro na Resposta"
+msgstr "Response Error"
+
+msgid "Obrigado pela sua resposta!"
+msgstr "Thank you for your response!"
+
+msgid "Obrigado!"
+msgstr "Thank you!"
+
+msgid "Sua resposta foi registrada com sucesso. Agradecemos muito seu feedback!"
+msgstr "Your response has been successfully recorded. We greatly appreciate your feedback!"
+
+msgid "Voltar para o site"
+msgstr "Back to website"

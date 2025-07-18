@@ -1,0 +1,519 @@
+# Copyright (C) 2024 Cabeza Marketing
+# This file is distributed under the same license as the NPS Engine package.
+msgid ""
+msgstr ""
+"Project-Id-Version: NPS Engine 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-17 10:00-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Gemini Large Language Model\n"
+"X-Domain: nps-engine\n"
+
+#: admin/class-nps-admin-pages.php:26
+#: admin/class-nps-admin-pages.php:27
+msgid "NPS Engine"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:34
+#: admin/class-nps-admin-pages.php:35
+msgid "Contatos"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:42
+#: admin/class-nps-admin-pages.php:43
+msgid "Layout"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:50
+#: admin/class-nps-admin-pages.php:51
+msgid "Gatilhos"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:58
+#: admin/class-nps-admin-pages.php:59
+#: admin/class-nps-admin-pages.php:304
+msgid "Relatórios"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:67
+#: admin/class-nps-admin-pages.php:68
+msgid "Ferramentas"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:127
+msgid "Gerenciar Contatos NPS"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:134
+msgid "Adicionar Novo Contato Manualmente"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:137
+msgid "Nome"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:141
+#: admin/class-nps-admin-pages.php:181
+#: admin/class-nps-admin-pages.php:220
+msgid "E-mail"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:145
+#: admin/class-nps-admin-pages.php:183
+msgid "Status"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:148
+#: admin/class-nps-admin-pages.php:290
+msgid "Ativo"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:149
+#: admin/class-nps-admin-pages.php:291
+msgid "Inativo"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:154
+msgid "Adicionar Contato"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:158
+msgid "Importar Usuários WordPress"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:160
+msgid "Selecione os usuários do WordPress que você deseja adicionar como contatos NPS:"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:172
+msgid "Todos os usuários do WordPress já foram importados ou não há usuários."
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:176
+msgid "Importar Selecionados"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:180
+msgid "Lista de Contatos"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:184
+msgid "Origem"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:185
+msgid "Última Pesquisa"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:186
+#: includes/class-nps-admin-actions.php:50
+msgid "Ações"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:195
+msgid "Usuário WP"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:195
+msgid "Manual"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:196
+msgid "Nunca"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:201
+msgid "Desativar"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:201
+msgid "Ativar"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:202
+msgid "Tem certeza que deseja excluir este contato e todas as suas respostas?"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:203
+msgid "Excluir"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:207
+msgid "Nenhum contato encontrado."
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:215
+msgid "Configurações de Layout do Email"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:228
+msgid "Conteúdo do E-mail"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:231
+msgid "Nome do Remetente"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:235
+msgid "E-mail do Remetente"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:239
+msgid "E-mail de Resposta (Opcional)"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:243
+msgid "Assunto do E-mail"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:247
+msgid "Corpo do E-mail"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:250
+msgid "Use <code>[contact_name]</code>, <code>[site_name]</code>, e <code>[nps_score_links]</code>."
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:255
+msgid "Salvar Layout"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:259
+msgid "Testar Envio"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:262
+msgid "Enviar E-mail de Teste Para:"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:266
+msgid "Enviar Teste"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:273
+#: admin/class-nps-admin-pages.php:339
+msgid "Gatilhos da Pesquisa"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:285
+msgid "Política de Quarentena"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:286
+msgid "Define o período mínimo que um contato deve esperar antes de poder receber uma nova pesquisa, independentemente do gatilho."
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:288
+msgid "Intervalo mínimo entre pesquisas (dias):"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:294
+msgid "Configuração do Gatilho"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:295
+msgid "Defina a condição que irá disparar o envio da pesquisa para os contatos elegíveis."
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:297
+msgid "Gatilho"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:299
+msgid "Baseado em Tempo"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:300
+msgid "Baseado em Evento"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:304
+msgid "Enviar uma pesquisa a cada (dias):"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:305
+msgid "A pesquisa só será enviada se o contato também estiver fora da Política de Quarentena."
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:308
+msgid "Quando o evento ocorrer:"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:310
+#: admin/class-nps-admin-pages.php:350
+#: includes/class-nps-trigger-settings.php:57
+msgid "Pedido WooCommerce Concluído"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:311
+msgid "Requer integração com o plugin correspondente (ex: WooCommerce)."
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:314
+msgid "Aguardar (dias) antes de enviar a pesquisa:"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:318
+msgid "Salvar Configurações de Gatilhos"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:346
+msgid "Relatórios NPS"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:350
+msgid "De:"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:352
+msgid "Até:"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:354
+msgid "Filtrar"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:355
+msgid "Exportar para CSV"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:358
+msgid "Visão Geral do NPS"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:359
+msgid "Pontuação NPS:"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:360
+msgid "Total de Respostas:"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:361
+msgid "Promotores (9-10):"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:362
+msgid "Passivos (7-8):"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:363
+msgid "Detratores (0-6):"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:365
+msgid "Nenhuma resposta encontrada para o período selecionado."
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:368
+msgid "Respostas Detalhadas"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:372
+msgid "Contato (E-mail)"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:373
+msgid "Pontuação"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:374
+msgid "Data da Resposta"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:383
+msgid "Nenhuma resposta detalhada encontrada para o período selecionado."
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:390
+msgid "Ferramentas"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:399
+msgid "Resetar Dados do Plugin"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:400
+msgid "ATENÇÃO:"
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:400
+msgid "Esta ação é irreversível. Ela irá apagar permanentemente TODOS os contatos e TODAS as respostas de pesquisa do banco de dados. Use com extremo cuidado."
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:402
+msgid "Você tem CERTEZA ABSOLUTA que deseja apagar todos os contatos e respostas? Esta ação não pode ser desfeita."
+msgstr ""
+
+#: admin/class-nps-admin-pages.php:404
+msgid "Apagar Todos os Contatos e Respostas"
+msgstr ""
+
+#: includes/class-nps-contacts-manager.php:24
+msgid "Erro: O endereço de e-mail fornecido é inválido."
+msgstr ""
+
+#: includes/class-nps-contacts-manager.php:26
+msgid "Erro: Este e-mail já existe na lista de contatos."
+msgstr ""
+
+#: includes/class-nps-contacts-manager.php:29
+msgid "Contato adicionado com sucesso!"
+msgstr ""
+
+#: includes/class-nps-contacts-manager.php:31
+msgid "Erro ao tentar adicionar o novo contato no banco de dados."
+msgstr ""
+
+#: includes/class-nps-contacts-manager.php:31
+#: includes/class-nps-contacts-manager.php:60
+#: includes/class-nps-contacts-manager.php:79
+#: includes/class-nps-database-manager.php:46
+msgid "Detalhes: %s"
+msgstr ""
+
+#: includes/class-nps-contacts-manager.php:39
+msgid "Nenhum usuário do WordPress foi selecionado para importação."
+msgstr ""
+
+#: includes/class-nps-contacts-manager.php:57
+msgid "%d novos usuários importados com sucesso."
+msgstr ""
+
+#: includes/class-nps-contacts-manager.php:59
+msgid "%d usuários já existentes foram atualizados."
+msgstr ""
+
+#: includes/class-nps-contacts-manager.php:61
+msgid "%d usuários falharam na importação. Verifique os logs."
+msgstr ""
+
+#: includes/class-nps-contacts-manager.php:64
+msgid "Nenhuma ação de importação foi concluída."
+msgstr ""
+
+#: includes/class-nps-contacts-manager.php:72
+msgid "Erro: Contato não encontrado."
+msgstr ""
+
+#: includes/class-nps-contacts-manager.php:77
+msgid "Status do contato alterado para ATIVO."
+msgstr ""
+
+#: includes/class-nps-contacts-manager.php:77
+msgid "Status do contato alterado para INATIVO."
+msgstr ""
+
+#: includes/class-nps-contacts-manager.php:78
+msgid "Erro ao tentar atualizar o status do contato."
+msgstr ""
+
+#: includes/class-nps-contacts-manager.php:97
+msgid "Contato e suas respostas foram excluídos com sucesso!"
+msgstr ""
+
+#: includes/class-nps-contacts-manager.php:99
+msgid "Erro ao tentar excluir o contato do banco de dados."
+msgstr ""
+
+#: includes/class-nps-database-manager.php:48
+msgid "Todos os contatos e respostas foram apagados com sucesso."
+msgstr ""
+
+#: includes/class-nps-email-settings.php:28
+msgid "Configurações de e-mail salvas com sucesso!"
+msgstr ""
+
+#: includes/class-nps-email-settings.php:36
+msgid "Erro: Endereço de e-mail de teste inválido."
+msgstr ""
+
+#: includes/class-nps-email-settings.php:43
+msgid "Teste de E-mail do Plugin NPS Engine"
+msgstr ""
+
+#: includes/class-nps-email-settings.php:44
+msgid "Este é um e-mail de teste enviado do seu Plugin NPS Engine no WordPress. Se você recebeu este e-mail, suas configurações de e-mail estão funcionando corretamente."
+msgstr ""
+
+#: includes/class-nps-email-settings.php:52
+msgid "E-mail de teste enviado com sucesso para %s!"
+msgstr ""
+
+#: includes/class-nps-email-settings.php:55
+msgid "Erro ao enviar e-mail de teste. Verifique suas configurações e logs do servidor."
+msgstr ""
+
+#: includes/class-nps-email-settings.php:57
+#: includes/class-nps-survey-dispatcher.php:123
+msgid "Detalhes do erro: %s"
+msgstr ""
+
+#: includes/class-nps-survey-dispatcher.php:84
+#: includes/class-nps-email-settings.php:14
+#: includes/class-nps-trigger-settings.php:64
+msgid "Sua opinião é importante para nós!"
+msgstr ""
+
+#: includes/class-nps-trigger-settings.php:26
+msgid "Erro: O intervalo da política de quarentena deve ser um número positivo."
+msgstr ""
+
+#: includes/class-nps-trigger-settings.php:41
+msgid "Erro: O intervalo de dias para o gatilho de tempo deve ser positivo."
+msgstr ""
+
+#: includes/class-nps-trigger-settings.php:48
+msgid "Erro: O atraso em dias após o evento não pode ser negativo."
+msgstr ""
+
+#: includes/class-nps-trigger-settings.php:52
+msgid "Erro: Um evento deve ser selecionado."
+msgstr ""
+
+#: includes/class-nps-trigger-settings.php:67
+msgid "Erro ao salvar as configurações no banco de dados."
+msgstr ""
+
+#: includes/class-nps-trigger-settings.php:71
+msgid "Configurações de gatilhos salvas com sucesso!"
+msgstr ""
+
+#: public/class-nps-public-handlers.php:33
+msgid "Link de pesquisa inválido ou expirado."
+msgstr ""
+
+#: public/class-nps-public-handlers.php:33
+msgid "Erro na Pesquisa"
+msgstr ""
+
+#: public/class-nps-public-handlers.php:53
+msgid "Ocorreu um erro ao registrar sua resposta."
+msgstr ""
+
+#: public/class-nps-public-handlers.php:53
+msgid "Erro na Resposta"
+msgstr ""
+
+#: public/class-nps-public-handlers.php:60
+#: public/class-nps-public-handlers.php:82
+msgid "Obrigado pela sua resposta!"
+msgstr ""
+
+#: public/class-nps-public-handlers.php:111
+msgid "Obrigado!"
+msgstr ""
+
+#: public/class-nps-public-handlers.php:112
+msgid "Sua resposta foi registrada com sucesso. Agradecemos muito seu feedback!"
+msgstr ""
+
+#: public/class-nps-public-handlers.php:113
+msgid "Voltar para o site"
+msgstr ""

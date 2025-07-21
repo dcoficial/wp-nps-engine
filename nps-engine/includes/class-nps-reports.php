@@ -23,7 +23,7 @@ class NPS_Reports {
         global $wpdb;
         $table_name_responses = $wpdb->prefix . 'nps_survey_instances';
 
-        // CORREÇÃO: A query base agora inclui placeholders para os nomes das tabelas para maior segurança.
+        // A query base agora usa placeholders para nomes de tabelas para maior segurança.
         // E o placeholder para 'responded' está fixo na query.
         $query = "SELECT score FROM {$table_name_responses} WHERE responded = 1";
         $params = array();
@@ -37,12 +37,9 @@ class NPS_Reports {
             $params[] = $end_date . ' 23:59:59';
         }
 
-        // CORREÇÃO: Só executa wpdb::prepare se houver parâmetros (filtros de data).
-        if ( !empty($params) ) {
-            $responses = $wpdb->get_results( $wpdb->prepare( $query, $params ), ARRAY_A );
-        } else {
-            $responses = $wpdb->get_results( $query, ARRAY_A );
-        }
+        // Executa wpdb::prepare sempre que houver a query.
+        $responses = $wpdb->get_results( $wpdb->prepare( $query, $params ), ARRAY_A );
+
 
         $total_responses = count($responses);
         $promoters = 0;
@@ -50,8 +47,8 @@ class NPS_Reports {
         $detractors = 0;
 
         foreach ($responses as $response) {
-            if ($response['score'] >= 9) { $promoters++; } 
-            elseif ($response['score'] >= 7) { $passives++; } 
+            if ($response['score'] >= 9) { $promoters++; }
+            elseif ($response['score'] >= 7) { $passives++; }
             else { $detractors++; }
         }
 
@@ -85,7 +82,7 @@ class NPS_Reports {
                   FROM {$table_name_responses} AS inst
                   JOIN {$table_name_contacts} AS cont ON inst.contact_id = cont.id
                   WHERE inst.responded = 1";
-        
+
         $params = array();
 
         if ( !empty($start_date) ) {
@@ -96,33 +93,29 @@ class NPS_Reports {
             $query .= " AND inst.response_timestamp <= %s";
             $params[] = $end_date . ' 23:59:59';
         }
-        
+
         $query .= " ORDER BY inst.response_timestamp DESC";
 
-        // CORREÇÃO: Só executa wpdb::prepare se houver parâmetros (filtros de data).
-        if ( !empty($params) ) {
-            return $wpdb->get_results( $wpdb->prepare( $query, $params ), ARRAY_A );
-        } else {
-            return $wpdb->get_results( $query, ARRAY_A );
-        }
+        // Executa wpdb::prepare sempre que houver a query.
+        return $wpdb->get_results( $wpdb->prepare( $query, $params ), ARRAY_A );
     }
 
     /**
      * Exporta as respostas detalhadas para um arquivo CSV.
      */
     public function export_responses_to_csv() {
-        $start_date = isset($_GET['start_date']) ? sanitize_text_field($_GET['start_date']) : '';
-        $end_date = isset($_GET['end_date']) ? sanitize_text_field($_GET['end_date']) : '';
+        $start_date = isset($_GET['start_date']) ? sanitize_text_field(wp_unslash($_GET['start_date'])) : '';
+        $end_date = isset($_GET['end_date']) ? sanitize_text_field(wp_unslash($_GET['end_date'])) : '';
 
         $responses = $this->get_detailed_responses($start_date, $end_date);
 
-        $filename = 'nps_responses_' . date('Y-m-d') . '.csv';
+        $filename = 'nps_responses_' . current_time('Y-m-d') . '.csv';
 
         header('Content-Type: text/csv');
         header('Content-Disposition: attachment; filename="' . $filename . '"');
 
         $output = fopen('php://output', 'w');
-        
+
         // Cabeçalho do CSV
         fputcsv($output, array('Email do Contato', 'Pontuacao', 'Data da Resposta'));
 

@@ -21,13 +21,11 @@ class NPS_Email_Settings {
             'from_email'        => sanitize_email( $_POST['nps_from_email'] ),
             'reply_to_email'    => sanitize_email( $_POST['nps_reply_to_email'] ),
             'email_subject'     => sanitize_text_field( $_POST['nps_email_subject'] ),
-            'email_body'        => wp_kses_post( $_POST['nps_email_body'] ),
-            // AJUSTE: Salva o estado da checkbox. Se não estiver marcada, salva um valor vazio.
-            'show_powered_by'   => isset( $_POST['nps_show_powered_by'] ) ? 1 : 0,
+            'email_body'        => wp_kses_post( $_POST['nps_email_body'] ), // Permite HTML básico
         );
 
         update_option( 'nps_email_settings', $settings );
-        NPS_Helper_Functions::redirect_with_message( 'nps-survey-email-settings', __( 'Email settings saved successfully!', 'nps-engine' ), 'success' );
+        NPS_Helper_Functions::redirect_with_message( 'email_settings', __( 'Configurações de e-mail salvas com sucesso!', 'nps-engine' ), 'success' );
     }
 
     /**
@@ -36,7 +34,7 @@ class NPS_Email_Settings {
     public function send_test_email() {
         $to = sanitize_email( $_POST['nps_test_email_address'] );
         if ( ! is_email( $to ) ) {
-            NPS_Helper_Functions::redirect_with_message( 'nps-survey-email-settings', __( 'Error: Invalid test email address.', 'nps-engine' ), 'error' );
+            NPS_Helper_Functions::redirect_with_message( 'email_settings', __( 'Erro: Endereço de e-mail de teste inválido.', 'nps-engine' ), 'error' );
             return;
         }
 
@@ -44,9 +42,10 @@ class NPS_Email_Settings {
         $from_name = isset( $email_settings['from_name'] ) ? $email_settings['from_name'] : get_bloginfo( 'name' );
         $from_email = isset( $email_settings['from_email'] ) ? $email_settings['from_email'] : get_bloginfo( 'admin_email' );
 
-        $subject = __( 'NPS Engine Plugin Email Test', 'nps-engine' );
-        $body = __( 'This is a test email sent from your NPS Engine Plugin on WordPress. If you received this email, your email settings are working correctly.', 'nps-engine' );
-        
+        $subject = __( 'Teste de E-mail do Plugin NPS Engine', 'nps-engine' );
+        $body = __( 'Este é um e-mail de teste enviado do seu Plugin NPS Engine no WordPress. Se você recebeu este e-mail, suas configurações de e-mail estão funcionando corretamente.', 'nps-engine' );
+
+        // Define o cabeçalho do remetente, essencial para o envio funcionar corretamente
         $headers = array(
             'Content-Type: text/html; charset=UTF-8',
             'From: ' . $from_name . ' <' . $from_email . '>',
@@ -55,15 +54,17 @@ class NPS_Email_Settings {
         $sent = wp_mail( $to, $subject, $body, $headers );
 
         if ( $sent ) {
-            NPS_Helper_Functions::redirect_with_message( 'nps-survey-email-settings', sprintf( __( 'Test email successfully sent to %s!', 'nps-engine' ), $to ), 'success' );
+            /* translators: %s: Recipient's email address */
+            NPS_Helper_Functions::redirect_with_message( 'email_settings', sprintf( __( 'E-mail de teste enviado com sucesso para %s!', 'nps-engine' ), $to ), 'success' );
         } else {
             global $phpmailer;
-            $error_message = __( 'Error sending test email. Check your settings and server logs.', 'nps-engine' );
+            $error_message = __( 'Erro ao enviar e-mail de teste. Verifique suas configurações e logs do servidor.', 'nps-engine' );
             if ( isset( $phpmailer->ErrorInfo ) && ! empty( $phpmailer->ErrorInfo ) ) {
-                $error_message .= ' ' . sprintf( __( 'Details: %s', 'nps-engine' ), $phpmailer->ErrorInfo );
+                /* translators: %s: Error details from the PHPMailer library */
+                $error_message .= ' ' . sprintf( __( 'Detalhes do erro: %s', 'nps-engine' ), $phpmailer->ErrorInfo );
                 error_log( 'NPS Engine Test Email Error: ' . $phpmailer->ErrorInfo );
             }
-            NPS_Helper_Functions::redirect_with_message( 'nps-survey-email-settings', $error_message, 'error' );
+            NPS_Helper_Functions::redirect_with_message( 'email_settings', $error_message, 'error' );
         }
     }
 }

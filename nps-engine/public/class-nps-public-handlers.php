@@ -1,7 +1,6 @@
 <?php
 /**
  * Gerencia os handlers públicos (front-end) para o plugin NPS Engine.
- * Inclui a lógica para o endpoint da pesquisa NPS e a página de agradecimento.
  *
  * @package NPS_Engine
  * @subpackage Public
@@ -13,21 +12,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class NPS_Public_Handlers {
 
-    /**
-     * Registra a regra de reescrita para o endpoint da pesquisa NPS.
-     */
     public function register_nps_rewrite_rule() {
-        add_rewrite_rule(
-            'nps-survey/([a-zA-Z0-9]+)/?$',
-            'index.php?nps_survey_hash=$matches[1]',
-            'top'
-        );
+        add_rewrite_rule( 'nps-survey/([a-zA-Z0-9]+)/?$', 'index.php?nps_survey_hash=$matches[1]', 'top' );
         add_rewrite_tag( '%nps_survey_hash%', '([a-zA-Z0-9]+)' );
     }
 
-    /**
-     * Garante que as regras de reescrita sejam atualizadas.
-     */
     public function flush_rewrite_rules_on_load() {
         if ( ! wp_doing_ajax() && ! wp_doing_cron() && get_option( 'nps_rewrite_rules_flushed' ) !== 'yes' ) {
             flush_rewrite_rules();
@@ -35,9 +24,6 @@ class NPS_Public_Handlers {
         }
     }
 
-    /**
-     * Lida com a resposta da pesquisa NPS quando o usuário clica no link.
-     */
     public function handle_nps_survey_response() {
         if ( preg_match( '#/nps-survey/([a-zA-Z0-9]{32})/?#', $_SERVER['REQUEST_URI'], $matches ) ) {
             global $wpdb;
@@ -55,7 +41,7 @@ class NPS_Public_Handlers {
             $instance = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $table_name_instances WHERE unique_hash = %s", $unique_hash ), ARRAY_A );
 
             if ( ! $instance ) {
-                wp_die( __( 'Link de pesquisa inválido ou expirado.', 'nps-engine' ), __( 'Erro na Pesquisa', 'nps-engine' ) );
+                wp_die( esc_html__( 'Link de pesquisa inválido ou expirado.', 'nps-engine' ), esc_html__( 'Erro na Pesquisa', 'nps-engine' ) );
             }
 
             if ( $instance['responded'] == 1 ) {
@@ -76,14 +62,11 @@ class NPS_Public_Handlers {
                 exit;
             } else {
                 error_log( 'NPS Engine DB Error (handle_nps_survey_response): ' . $wpdb->last_error . ' for hash ' . $unique_hash );
-                wp_die( __( 'Ocorreu um erro ao registrar sua resposta.', 'nps-engine' ), __( 'Erro na Resposta', 'nps-engine' ) );
+                wp_die( esc_html__( 'Ocorreu um erro ao registrar sua resposta.', 'nps-engine' ), esc_html__( 'Erro na Resposta', 'nps-engine' ) );
             }
         }
     }
 
-    /**
-     * Cria a página de agradecimento automaticamente na ativação.
-     */
     public function create_thank_you_page() {
         $page_title = __( 'Obrigado pela sua resposta!', 'nps-engine' );
         $page_content = '';
@@ -108,7 +91,7 @@ class NPS_Public_Handlers {
             <head>
                 <meta charset="<?php bloginfo( 'charset' ); ?>">
                 <meta name="viewport" content="width=device-width, initial-scale=1">
-                <title><?php _e( 'Obrigado pela sua resposta!', 'nps-engine' ); ?></title>
+                <title><?php esc_html_e( 'Obrigado pela sua resposta!', 'nps-engine' ); ?></title>
                 <?php wp_head(); ?>
                 <style>
                     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; flex-direction: column; }
@@ -124,11 +107,11 @@ class NPS_Public_Handlers {
             </head>
             <body>
                 <div class="nps-thank-you-container">
-                    <h1><?php _e( 'Obrigado!', 'nps-engine' ); ?></h1>
-                    <p><?php _e( 'Sua resposta foi registrada com sucesso. Agradecemos muito seu feedback!', 'nps-engine' ); ?></p>
-                    <a href="<?php echo esc_url( home_url() ); ?>"><?php _e( 'Voltar para o site', 'nps-engine' ); ?></a>
+                    <h1><?php esc_html_e( 'Obrigado!', 'nps-engine' ); ?></h1>
+                    <p><?php esc_html_e( 'Sua resposta foi registrada com sucesso. Agradecemos muito seu feedback!', 'nps-engine' ); ?></p>
+                    <a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Voltar para o site', 'nps-engine' ); ?></a>
                 </div>
-                
+
                 <div class="nps-powered-by">
                     <p>Powered by <a href="https://cabeza.com.br/nps-engine" target="_blank">NPS Engine for Wordpress</a></p>
                 </div>

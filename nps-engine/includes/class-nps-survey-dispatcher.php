@@ -19,12 +19,15 @@ class NPS_Survey_Dispatcher {
         global $wpdb;
         $table_name_contacts = $wpdb->prefix . 'nps_contacts';
         $table_name_rules = $wpdb->prefix . 'nps_rules';
-        
+
         // Política de Quarentena
         $quarantine_days = get_option( 'nps_global_min_frequency', 90 );
 
         // Pega a única regra ativa
-        $rule = $wpdb->get_row( "SELECT * FROM $table_name_rules WHERE status = 1 LIMIT 1", ARRAY_A );
+        $rule = $wpdb->get_row( $wpdb->prepare(
+            "SELECT * FROM {$table_name_rules} WHERE status = %d LIMIT 1",
+            1
+        ), ARRAY_A );
 
         if ( ! $rule ) {
             error_log( 'NPS Engine Dispatch: Nenhuma regra de gatilho ativa encontrada.' );
@@ -35,44 +38,39 @@ class NPS_Survey_Dispatcher {
         $current_time = current_time( 'mysql' );
 
         if ( $rule['trigger_type'] === 'time' ) {
-            // AJUSTE DE LÓGICA: A consulta agora verifica tanto o intervalo da regra quanto a quarentena.
             $interval_days = $rule['interval_days'];
-            
+
             $eligible_contacts = $wpdb->get_results( $wpdb->prepare(
-                "SELECT * FROM $table_name_contacts
+                "SELECT * FROM {$table_name_contacts}
                 WHERE status = 1
                 AND (
-                    -- Contatos que nunca receberam uma pesquisa são sempre elegíveis
-                    last_survey_sent IS NULL
-                    OR 
-                    -- Contatos que já receberam devem atender a AMBAS as condições
+                    last_survey_sent IS NULL OR
                     (last_survey_sent <= DATE_SUB(%s, INTERVAL %d DAY) AND last_survey_sent <= DATE_SUB(%s, INTERVAL %d DAY))
                 )",
                 $current_time,
-                $interval_days, // Frequência da regra
+                $interval_days,
                 $current_time,
-                $quarantine_days // Política de Quarentena
+                $quarantine_days
             ), ARRAY_A );
-            
+
             $contacts_to_survey = $eligible_contacts;
 
         } elseif ( $rule['trigger_type'] === 'event' ) {
             $delay_days = $rule['delay_days'];
 
-            // AJUSTE DE LÓGICA: A consulta também verifica a quarentena para eventos.
             $eligible_contacts = $wpdb->get_results( $wpdb->prepare(
-                "SELECT * FROM $table_name_contacts
+                "SELECT * FROM {$table_name_contacts}
                 WHERE status = 1
                 AND last_event_trigger IS NOT NULL
                 AND last_event_trigger <= DATE_SUB(%s, INTERVAL %d DAY)
                 AND (
-                    last_survey_sent IS NULL
-                    OR last_survey_sent <= DATE_SUB(%s, INTERVAL %d DAY)
+                    last_survey_sent IS NULL OR
+                    last_survey_sent <= DATE_SUB(%s, INTERVAL %d DAY)
                 )",
                 $current_time,
                 $delay_days,
                 $current_time,
-                $quarantine_days // Política de Quarentena
+                $quarantine_days
             ), ARRAY_A );
 
             $contacts_to_survey = $eligible_contacts;
@@ -80,17 +78,16 @@ class NPS_Survey_Dispatcher {
 
         // Envia as pesquisas para os contatos elegíveis
         foreach ( $contacts_to_survey as $contact ) {
-            $this->send_nps_survey_email( $contact );
-            
-            // Se o gatilho foi por evento, reseta o 'last_event_trigger' para não enviar de novo pelo mesmo evento.
-            if ($rule['trigger_type'] === 'event') {
-                 $wpdb->update(
-                    $table_name_contacts,
-                    array( 'last_event_trigger' => null ),
-                    array( 'id' => $contact['id'] ),
-                    array( '%s' ),
-                    array( '%d' )
-                );
+            if ( $this->send_nps_survey_email( $contact ) ) {
+                if ($rule['trigger_type'] === 'event') {
+                     $wpdb->update(
+                        $table_name_contacts,
+                        array( 'last_event_trigger' => null ),
+                        array( 'id' => $contact['id'] ),
+                        array( '%s' ),
+                        array( '%d' )
+                    );
+                }
             }
         }
     }
@@ -161,6 +158,8 @@ class NPS_Survey_Dispatcher {
             global $phpmailer;
             $error_details = ( isset( $phpmailer->ErrorInfo ) && ! empty( $phpmailer->ErrorInfo ) ) ? ' Detalhes do erro: ' . $phpmailer->ErrorInfo : '';
             error_log( 'NPS Engine Survey: Falha ao enviar pesquisa para ' . $contact['email'] . '.' . $error_details );
+            // Reverte a criação da instância se o e-mail falhou, para que possa ser tentado novamente.
+            $wpdb->delete( $table_name_instances, array( 'id' => $wpdb->insert_id ) );
             return false;
         }
     }

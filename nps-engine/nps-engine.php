@@ -3,17 +3,16 @@
  * Plugin Name: NPS Engine
  * Plugin URI:  https://cabeza.com.br/nps-engine
  * Description: An all-in-one WordPress plugin that provides a complete solution for NPS surveys, contact management, form submissions, trigger and frequency controls, and automatic response capture.
- * Version:     1.0.0
+ * Version:     1.1.0
  * Author:      Cabeza Marketing
  * Author URI:  https://cabeza.com.br
- * License:     GPL2
+ * License:     GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: nps-engine
- * Domain Path: /languages
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-    exit; // Sair se acessado diretamente
+    exit; // Exit if accessed directly
 }
 
 /**
@@ -25,37 +24,51 @@ if ( ! defined( 'NPS_ENGINE_PLUGIN_DIR' ) ) {
 
 /**
  * Classe principal do Plugin NPS Engine.
+ * Responsável por carregar todos os módulos e gerenciar os hooks de ativação/desativação.
  */
-class NPS_Engine {
+final class NPS_Engine {
+
+    /**
+     * Instância única da classe.
+     * @var NPS_Engine
+     */
+    private static $instance = null;
+
+    /**
+     * Módulos do plugin.
+     * @var array
+     */
+    public $modules = [];
+
+    /**
+     * Garante que apenas uma instância da classe seja criada.
+     * @return NPS_Engine
+     */
+    public static function get_instance() {
+        if ( self::$instance === null ) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
 
     /**
      * Construtor da classe.
+     * Carrega os arquivos de dependência e inicializa os módulos.
      */
-    public function __construct() {
-        add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
-        
+    private function __construct() {
         $this->load_dependencies();
-        $this->define_admin_hooks();
-        $this->define_public_hooks();
-        $this->define_cron_hooks();
         $this->init_modules();
+        $this->define_hooks();
 
-        register_activation_hook( __FILE__, array( $this, 'activate_nps_engine' ) );
-        register_deactivation_hook( __FILE__, array( $this, 'deactivate_nps_engine' ) );
+        register_activation_hook( __FILE__, array( $this->modules['database_manager'], 'activate_nps_engine' ) );
+        register_deactivation_hook( __FILE__, array( $this->modules['database_manager'], 'deactivate_nps_engine' ) );
     }
 
     /**
-     * Carrega os arquivos de tradução do plugin.
+     * Carrega todos os arquivos de classe necessários.
      */
-    public function load_textdomain() {
-        load_plugin_textdomain(
-            'nps-engine',
-            false,
-            dirname( plugin_basename( __FILE__ ) ) . '/languages/'
-        );
-    }
-    
     private function load_dependencies() {
+        // Core Logic
         require_once NPS_ENGINE_PLUGIN_DIR . 'includes/class-nps-database-manager.php';
         require_once NPS_ENGINE_PLUGIN_DIR . 'includes/class-nps-contacts-manager.php';
         require_once NPS_ENGINE_PLUGIN_DIR . 'includes/class-nps-email-settings.php';
@@ -63,67 +76,72 @@ class NPS_Engine {
         require_once NPS_ENGINE_PLUGIN_DIR . 'includes/class-nps-survey-dispatcher.php';
         require_once NPS_ENGINE_PLUGIN_DIR . 'includes/class-nps-reports.php';
         require_once NPS_ENGINE_PLUGIN_DIR . 'includes/class-nps-helper-functions.php';
+
+        // Admin
         require_once NPS_ENGINE_PLUGIN_DIR . 'admin/class-nps-admin-pages.php';
         require_once NPS_ENGINE_PLUGIN_DIR . 'admin/class-nps-admin-actions.php';
+
+        // Public
         require_once NPS_ENGINE_PLUGIN_DIR . 'public/class-nps-public-handlers.php';
     }
 
-    private function define_admin_hooks() {
-        $admin_pages = new NPS_Admin_Pages();
-        $admin_actions = new NPS_Admin_Actions();
-        add_action( 'admin_menu', array( $admin_pages, 'add_admin_menu_pages' ) );
-        add_action( 'admin_init', array( $admin_actions, 'handle_admin_form_submissions' ) );
-        add_action( 'admin_enqueue_scripts', array( $admin_pages, 'enqueue_admin_styles' ) );
-    }
-
-    private function define_public_hooks() {
-        $public_handlers = new NPS_Public_Handlers();
-        add_action( 'init', array( $public_handlers, 'register_nps_rewrite_rule' ) );
-        add_action( 'wp_loaded', array( $public_handlers, 'flush_rewrite_rules_on_load' ) );
-        add_action( 'init', array( $public_handlers, 'handle_nps_survey_response' ) );
-        // A linha abaixo foi removida da função activate_nps_engine e movida para cá.
-        add_action( 'init', array( $public_handlers, 'create_thank_you_page' ) );
-        add_action( 'template_redirect', array( $public_handlers, 'nps_survey_thank_you_page_template' ) );
-    }
-
-    private function define_cron_hooks() {
-        $survey_dispatcher = new NPS_Survey_Dispatcher();
-        add_action( 'nps_survey_dispatch_cron', array( $survey_dispatcher, 'nps_dispatch_cron_job' ) );
-    }
-
+    /**
+     * Inicializa os módulos, aplicando injeção de dependência.
+     */
     private function init_modules() {
-        new NPS_Contacts_Manager();
-        new NPS_Trigger_Settings();
-        new NPS_Reports();
-        new NPS_Survey_Dispatcher();
-        new NPS_Email_Settings();
+        // Instancia os managers primeiro
+        $this->modules['database_manager'] = new NPS_Database_Manager();
+        $this->modules['contacts_manager'] = new NPS_Contacts_Manager();
+        $this->modules['email_settings'] = new NPS_Email_Settings();
+        $this->modules['trigger_settings'] = new NPS_Trigger_Settings();
+        $this->modules['reports'] = new NPS_Reports();
+        $this->modules['survey_dispatcher'] = new NPS_Survey_Dispatcher();
+
+        // Injeta os managers nas classes que os utilizam
+        $this->modules['admin_pages'] = new NPS_Admin_Pages(); // Não tem dependências diretas
+        $this->modules['admin_actions'] = new NPS_Admin_Actions(
+            $this->modules['reports'],
+            $this->modules['contacts_manager'],
+            $this->modules['email_settings'],
+            $this->modules['trigger_settings'],
+            $this->modules['database_manager']
+        );
+        $this->modules['public_handlers'] = new NPS_Public_Handlers();
     }
 
-    public function activate_nps_engine() {
-        $db_manager = new NPS_Database_Manager();
-        $db_manager->create_nps_tables();
-        if ( ! wp_next_scheduled( 'nps_survey_dispatch_cron' ) ) {
-            // Pega a hora salva, ou usa o padrão '09:00'
-            $cron_time = get_option( 'nps_cron_run_time', '09:00' );
-            
-            // Calcula o próximo timestamp no fuso horário do site
-            $next_run = strtotime( 'today ' . $cron_time );
-            if ( $next_run < time() ) {
-                $next_run = strtotime( 'tomorrow ' . $cron_time );
-            }
-            
-            // Agenda o evento diário
-            wp_schedule_event( $next_run, 'daily', 'nps_survey_dispatch_cron' );
-        }
-        flush_rewrite_rules();
-        update_option( 'nps_rewrite_rules_flushed', 'yes' );
+    /**
+     * Define todos os hooks do plugin.
+     */
+    private function define_hooks() {
+        // Admin Hooks
+        add_action( 'admin_menu', array( $this->modules['admin_pages'], 'add_admin_menu_pages' ) );
+        add_action( 'admin_init', array( $this->modules['admin_actions'], 'handle_admin_form_submissions' ) );
+        add_action( 'admin_enqueue_scripts', array( $this->modules['admin_pages'], 'enqueue_admin_styles' ) );
+
+        // Public Hooks
+        add_action( 'init', array( $this->modules['public_handlers'], 'register_nps_rewrite_rule' ) );
+        add_action( 'wp_loaded', array( $this->modules['public_handlers'], 'flush_rewrite_rules_on_load' ) );
+        add_action( 'init', array( $this->modules['public_handlers'], 'handle_nps_survey_response' ) );
+        add_action( 'init', array( $this->modules['public_handlers'], 'create_thank_you_page' ) );
+        add_action( 'template_redirect', array( $this->modules['public_handlers'], 'nps_survey_thank_you_page_template' ) );
+
+        // Cron Hooks
+        add_action( 'nps_survey_dispatch_cron', array( $this->modules['survey_dispatcher'], 'nps_dispatch_cron_job' ) );
     }
 
-    public function deactivate_nps_engine() {
-        wp_clear_scheduled_hook( 'nps_survey_dispatch_cron' );
-        flush_rewrite_rules();
-        delete_option( 'nps_rewrite_rules_flushed' );
-    }
+    /**
+     * Previne a clonagem da instância.
+     */
+    private function __clone() {}
+
+    /**
+     * Previne a desserialização da instância.
+     */
+    public function __wakeup() {}
 }
 
-new NPS_Engine();
+// Inicia o plugin
+function nps_engine_run() {
+    return NPS_Engine::get_instance();
+}
+nps_engine_run();
